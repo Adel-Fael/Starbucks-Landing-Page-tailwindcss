@@ -1,19 +1,8 @@
 
-# if you'r in real life project un-comment these
-# node_modules
-# src
-# package-lock.json
-# package.json
-# tailwind.config.js
 
+node_modules
+src
+package-lock.json
+package.json
+tailwind.config.js
 
-# Editor directories and files
-# .vscode/*
-# !.vscode/extensions.json
-# .idea
-# .DS_Store
-# *.suo
-# *.ntvs*
-# *.njsproj
-# *.sln
-# *.sw?
