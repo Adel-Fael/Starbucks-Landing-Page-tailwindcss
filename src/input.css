@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  font-family: 'Noto Sans', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus,a:visited,a:active,
+button:focus,button:visited,button:active {
+  outline: none;
+}
+
+.breakStyle-1 {
+  @apply border-0 m-0 pt-8 pb-8 overflow-hidden block before:content-[''] before:block before:border-t-2 before:border-t-hoverColor100;
+}
+.LineSpan {
+  @apply md:border-0 md:pl-2 md:pr-2 md:overflow-hidden md:block md:before:content-[''] md:before:block md:before:border-r-2 md:before:border-b-neutral-800 md:before:h-9;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  cursor: pointer;
+  width: 13px;
+  height: 13px;
+  transition: ease-in-out;
+  position: relative;
+}
+
+.hamburger-t,
+.hamburger-m,
+.hamburger-b {
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 28px;
+  height: 2.5px;
+  background: #656565;
+  transform: rotate(0);
+  transition: all 0.5s;
+  border-radius: 100px;
+}
+
+.hamburger-m {
+  transform: translateY(7px);
+}
+
+.hamburger-b {
+  transform: translateY(14px);
+}
+
+.open {
+  transform: rotate(90deg);
+  transform: translateY(0px);
+}
+
+.open .hamburger-t {
+  transform: rotate(45deg) translateY(6px) translate(6px);
+}
+
+.open .hamburger-m {
+  display: none;
+}
+
+.open .hamburger-b {
+  transform: rotate(-45deg) translateY(6px) translate(-6px);
+}
