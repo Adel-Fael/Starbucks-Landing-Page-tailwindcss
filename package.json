@@ -4,10 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watchwind": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "buildwind": "npx tailwindcss -i ./src/input.css -o ./dist/output.css",
-    "minify": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-    "build": "npm-run-all buildwind minify"
+    "windcsswatch": "npx tailwindcss -i ./src/input.css -o ./public/assets/css/output.css --watch",
+    "windcss": "npx tailwindcss -i ./src/input.css -o ./public/assets/css/output.css",
+    "copy:assets": "copyfiles -u 1 ./src/assets/**/* public",
+    "copy:html": "copyfiles -u 1 ./src/*.html public",
+    "copy:js": "copyfiles -u 1 ./src/assets/js/*.js public",
+    "copy": "npm-run-all --parallel copy:*",
+    "watch:assets": "onchange \"/src/assets/**/*\" -- npm run copy:assets",
+    "watch:html": "onchange \"src/*.html\" -- npm run copy:html",
+    "watch:js": "onchange \"src/assets/js/*.js\" -- npm run copy:js",
+    "watch": "npm-run-all --parallel watch:*",
+    "start": "npm-run-all copy --parallel watch windcsswatch",
+    "minify": "npx tailwindcss -i ./src/input.css -o ./public/assets/css/output.css --minify",
+    "bpostcss": "postcss public/assets/css/*.css -u autoprefixer  -r --no-map",
+    "build": "npm-run-all copy:* windcss bpostcss minify"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +27,10 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.7"
+  },
+  "dependencies": {
+    "copyfiles": "^2.4.1",
+    "onchange": "^7.1.0",
+    "postcss-cli": "^10.0.0"
   }
 }
